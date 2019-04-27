@@ -41,7 +41,10 @@ public class DeathEvent implements Listener {
 
 
         if(!dead.hasMetadata(GlobalValues.KILL_ONE_OFF)){
-            if(sm.config.getCustomConfig().getBoolean("kill-all.enabled")){
+            // Implementing a permission for the "kill-all" feature rather than a global
+            // on or off toggle.
+//            if(sm.config.getCustomConfig().getBoolean("kill-all.enabled")){
+            if(dead.getKiller().hasPermission("stackmob.killall")) {
                 if (!sm.config.getCustomConfig().getStringList("kill-all.reason-blacklist")
                         .contains(dead.getLastDamageCause().getCause().name())){
                     if (!sm.config.getCustomConfig().getStringList("kill-all.type-blacklist")
